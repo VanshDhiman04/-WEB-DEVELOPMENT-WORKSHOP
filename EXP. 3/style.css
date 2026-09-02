@@ -100,6 +100,42 @@ body {
     margin-bottom: 8px;
 }
 
+.login {
+    padding: 10px 20px;
+}
+
+.login h2 {
+    text-align: center;
+    margin: 5px 0 15px;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.field label {
+    width: 130px;
+    font-size: 16px;
+}
+
+.field input {
+    width: 180px;
+    height: 28px;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.buttons input {
+    width: 75px;
+    height: 30px;
+    margin: 0 6px;
+}
+
 .catalogue-page {
     padding: 3px;
     overflow: auto;

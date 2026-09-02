@@ -100,6 +100,75 @@ body {
     margin-bottom: 8px;
 }
 
+.login {
+    padding: 10px 20px;
+}
+
+.login h2 {
+    text-align: center;
+    margin: 5px 0 15px;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.field label {
+    width: 130px;
+    font-size: 16px;
+}
+
+.field input {
+    width: 180px;
+    height: 28px;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.buttons input {
+    width: 75px;
+    height: 30px;
+    margin: 0 6px;
+}
+
+.catalogue-page {
+    padding: 3px;
+    overflow: auto;
+}
+
+.catalogue-page h2 {
+    text-align: center;
+    margin: 2px 0 5px;
+    font-size: 24px;
+}
+
+.catalogue {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+}
+
+.catalogue th,
+.catalogue td {
+    border: 1px solid black;
+    padding: 3px 2px;
+    text-align: center;
+}
+
+.catalogue th {
+    background-color: #f4a6c1;
+}
+
+.catalogue button {
+    padding: 2px 4px;
+    font-size: 9px;
+}
+
 .cart-page {
     padding: 3px;
     overflow: auto;
@@ -120,7 +189,7 @@ body {
 .cart th,
 .cart td {
     border: 1px solid black;
-    padding: 4px 3px;
+    padding: 5px;
     text-align: center;
 }
 
