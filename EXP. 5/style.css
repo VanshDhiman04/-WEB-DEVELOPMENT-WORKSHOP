@@ -97,6 +97,24 @@ body {
 .top .logo {
     width: 18%;
 }
+.top .logo {
+    width: 18%;
+}
+
+.top .logo img {
+    display: block;
+    width: 90px;
+    height: 50px;
+    object-fit:contain;
+    margin: 0 auto;
+}
+.top .logo img {
+    display: block;
+    width: 90px;
+    height: 50px;
+    object-fit: contain;
+    margin: 0 auto;
+}
 
 .top .website {
     width: 82%;
