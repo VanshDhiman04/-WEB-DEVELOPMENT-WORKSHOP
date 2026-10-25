@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,106 +16,157 @@
 
     <h2>Registration Form</h2>
 
-    <form>
+    <form id="registrationForm">
 
+        <!-- Name -->
         <div class="form-row">
-
-            <label>Name:</label>
-
-            <input type="text" name="name">
-
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
         </div>
 
+        <!-- Password -->
         <div class="form-row">
-
-            <label>Password:</label>
-
-            <input type="password" name="password">
-
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
         </div>
 
+        <!-- Email -->
         <div class="form-row">
-
-            <label>E-mail:</label>
-
-            <input type="email" name="email">
-
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
         </div>
 
+        <!-- Phone Number -->
         <div class="form-row">
-
-            <label>Phone Number:</label>
-
-            <input type="text" name="phone">
-
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone"
+                required pattern="[0-9]{10}"
+                minlength="10" maxlength="10"
+                inputmode="numeric"
+                title="Enter exactly 10 digits">
         </div>
 
+        <!-- Sex -->
         <div class="form-row">
-
             <label>Sex:</label>
 
-            <input type="radio" name="sex"> Male
+            <input type="radio" id="male" name="sex" value="Male" required>
+            <label for="male">Male</label>
 
-            <input type="radio" name="sex"> Female
-
+            <input type="radio" id="female" name="sex" value="Female">
+            <label for="female">Female</label>
         </div>
 
+        <!-- Date of Birth -->
         <div class="form-row">
-
             <label>Date of Birth:</label>
 
-            <select>
-                <option>Day</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+            <select id="day" name="day" required>
+                <option value="">Day</option>
+                <script>
+                    for (let i = 1; i <= 31; i++) {
+                        document.write(
+                            `<option value="${i}">${i}</option>`
+                        );
+                    }
+                </script>
             </select>
 
-            <select>
-                <option>Month</option>
-                <option>January</option>
-                <option>February</option>
-                <option>March</option>
+            <select id="month" name="month" required>
+                <option value="">Month</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
             </select>
 
-            <select>
-                <option>Year</option>
-                <option>2003</option>
-                <option>2004</option>
-                <option>2005</option>
+            <select id="year" name="year" required>
+                <option value="">Year</option>
+                <script>
+                    for (let i = 2026; i >= 1980; i--) {
+                        document.write(
+                            `<option value="${i}">${i}</option>`
+                        );
+                    }
+                </script>
             </select>
-
         </div>
 
+        <!-- Languages -->
         <div class="form-row">
-
             <label>Languages:</label>
 
-            <input type="checkbox"> English
-            <input type="checkbox"> Hindi
-            <input type="checkbox"> Telugu
-            <input type="checkbox"> Tamil
-
+            <input type="checkbox" name="language" value="English"> English
+            <input type="checkbox" name="language" value="Hindi"> Hindi
+            <input type="checkbox" name="language" value="Telugu"> Telugu
+            <input type="checkbox" name="language" value="Tamil"> Tamil
         </div>
 
+        <!-- Address -->
         <div class="form-row">
-
-            <label>Address:</label>
-
-            <textarea rows="2"></textarea>
-
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="2" required></textarea>
         </div>
 
+        <!-- Buttons -->
         <div class="buttons">
-
             <input type="submit" value="Register">
-
             <input type="reset" value="Reset">
-
         </div>
 
     </form>
 
+    <script>
+        const form = document.getElementById("registrationForm");
+
+        form.addEventListener("submit", function (event) {
+
+            const name = document.getElementById("name").value.trim();
+            const password = document.getElementById("password").value;
+            const languages = document.querySelectorAll(
+                'input[name="language"]:checked'
+            );
+
+            // Validate name: alphabets only, minimum 6 characters
+            const namePattern = /^[A-Za-z]{6,}$/;
+
+            if (!namePattern.test(name)) {
+                event.preventDefault();
+                alert(
+                    "Name must contain only alphabets and at least 6 characters."
+                );
+                return;
+            }
+
+            // Validate password: minimum 6 characters
+            if (password.length < 6) {
+                event.preventDefault();
+                alert("Password must contain at least 6 characters.");
+                return;
+            }
+
+            // Validate languages
+            if (languages.length === 0) {
+                event.preventDefault();
+                alert("Please select at least one language.");
+                return;
+            }
+
+            // All validations passed
+            event.preventDefault();
+            alert("Registration successful! All fields are valid.");
+        });
+    </script>
+
 </body>
 
 </html>
+```

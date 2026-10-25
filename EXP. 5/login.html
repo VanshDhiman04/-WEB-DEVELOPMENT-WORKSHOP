@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,35 +14,51 @@
 
 <body class="login">
 
-    <h2>Login Page</h2>
+    <div class="login-container">
 
-    <form>
+        <h2>Login Page</h2>
+        <p class="login-subtitle">Welcome back! Please log in.</p>
 
-        <div class="field">
+        <form id="loginForm">
 
-            <label>User Name:</label>
+            <div class="login-field">
+                <label for="username">User Name</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    required>
+            </div>
 
-            <input type="text" name="username">
+            <div class="login-field">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required>
+            </div>
 
-        </div>
+            <div class="login-buttons">
+                <button type="submit">Login</button>
+                <button type="reset" class="reset-button">Reset</button>
+            </div>
 
-        <div class="field">
+        </form>
 
-            <label>Password:</label>
+    </div>
 
-            <input type="password" name="password">
-
-        </div>
-
-        <div class="buttons">
-
-            <input type="submit" value="Submit">
-
-            <input type="reset" value="Reset">
-
-        </div>
-
-    </form>
+    <script>
+        document.getElementById("loginForm").addEventListener(
+            "submit",
+            function (event) {
+                event.preventDefault();
+                alert("Login form submitted successfully!");
+            }
+        );
+    </script>
 
 </body>
 

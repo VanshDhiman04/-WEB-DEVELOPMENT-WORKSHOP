@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,93 +15,147 @@
 <body class="catalogue-page">
 
     <h2>Book Catalogue</h2>
+    <p class="catalogue-description">
+        Find the right books for your engineering journey.
+    </p>
 
-    <table class="catalogue">
+    <div class="catalogue-message" id="cartMessage" role="status"></div>
 
-        <tr>
-            <th>Cover</th>
-            <th>Book</th>
-            <th>Author</th>
-            <th>Publisher</th>
-            <th>Price</th>
-            <th>Add to Cart</th>
-        </tr>
+    <div class="catalogue-table-container">
+        <table class="catalogue">
+            <thead>
+                <tr>
+                    <th>Cover</th>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-        <tr>
-            <td>■</td>
-            <td>XML Bible</td>
-            <td>Winston</td>
-            <td>Wiley</td>
-            <td>$40.5</td>
-            <td>
-                <button type="button"
-                    onclick="addToCart('XML Bible', 40.5)">
-                    Add to Cart
-                </button>
-            </td>
-        </tr>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="book-cover cover-xml">
+                            <span>XML</span>
+                            <strong>BIBLE</strong>
+                            <small>Web Technology</small>
+                        </div>
+                    </td>
+                    <td>XML Bible</td>
+                    <td>Winston</td>
+                    <td>Wiley</td>
+                    <td class="book-price">$40.50</td>
+                    <td>
+                        <button type="button" class="add-cart-btn"
+                            onclick="addToCart('XML Bible', 40.50)">
+                            <span>+</span> Add to Cart
+                        </button>
+                    </td>
+                </tr>
 
-        <tr>
-            <td>■</td>
-            <td>Artificial Intelligence</td>
-            <td>S. Russell</td>
-            <td>Prentice Hall</td>
-            <td>$63</td>
-            <td>
-                <button type="button"
-                    onclick="addToCart('Artificial Intelligence', 63)">
-                    Add to Cart
-                </button>
-            </td>
-        </tr>
+                <tr>
+                    <td>
+                        <div class="book-cover cover-ai">
+                            <span>ARTIFICIAL</span>
+                            <strong>INTELLIGENCE</strong>
+                            <small>Computer Science</small>
+                        </div>
+                    </td>
+                    <td>Artificial Intelligence</td>
+                    <td>S. Russell</td>
+                    <td>Prentice Hall</td>
+                    <td class="book-price">$63.00</td>
+                    <td>
+                        <button type="button" class="add-cart-btn"
+                            onclick="addToCart('Artificial Intelligence', 63.00)">
+                            <span>+</span> Add to Cart
+                        </button>
+                    </td>
+                </tr>
 
-        <tr>
-            <td>■</td>
-            <td>Java 2</td>
-            <td>Watson</td>
-            <td>BPB Publications</td>
-            <td>$35.5</td>
-            <td>
-                <button type="button"
-                    onclick="addToCart('Java 2', 35.5)">
-                    Add to Cart
-                </button>
-            </td>
-        </tr>
+                <tr>
+                    <td>
+                        <div class="book-cover cover-java">
+                            <span>JAVA</span>
+                            <strong>2</strong>
+                            <small>Programming</small>
+                        </div>
+                    </td>
+                    <td>Java 2</td>
+                    <td>Watson</td>
+                    <td>BPB Publications</td>
+                    <td class="book-price">$35.50</td>
+                    <td>
+                        <button type="button" class="add-cart-btn"
+                            onclick="addToCart('Java 2', 35.50)">
+                            <span>+</span> Add to Cart
+                        </button>
+                    </td>
+                </tr>
 
-        <tr>
-            <td>■</td>
-            <td>HTML in 24 Hours</td>
-            <td>Sam Peter</td>
-            <td>Sam Publications</td>
-            <td>$50</td>
-            <td>
-                <button type="button"
-                    onclick="addToCart('HTML in 24 Hours', 50)">
-                    Add to Cart
-                </button>
-            </td>
-        </tr>
-
-    </table>
+                <tr>
+                    <td>
+                        <div class="book-cover cover-html">
+                            <span>HTML</span>
+                            <strong>IN 24 HOURS</strong>
+                            <small>Web Development</small>
+                        </div>
+                    </td>
+                    <td>HTML in 24 Hours</td>
+                    <td>Sam Peter</td>
+                    <td>Sam Publications</td>
+                    <td class="book-price">$50.00</td>
+                    <td>
+                        <button type="button" class="add-cart-btn"
+                            onclick="addToCart('HTML in 24 Hours', 50.00)">
+                            <span>+</span> Add to Cart
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <script>
-
         function addToCart(name, price) {
+            let cart = [];
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            try {
+                cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            cart.push({
-                name: name,
-                price: price
+                if (!Array.isArray(cart)) {
+                    cart = [];
+                }
+            } catch (error) {
+                cart = [];
+            }
+
+            const existingItem = cart.find(function (item) {
+                return item.name === name;
             });
+
+            if (existingItem) {
+                existingItem.quantity = (Number(existingItem.quantity) || 0) + 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
 
             localStorage.setItem("cart", JSON.stringify(cart));
 
-            alert(name + " added to cart");
+            const message = document.getElementById("cartMessage");
+            message.textContent = name + " added to cart!";
+            message.classList.add("show");
 
+            setTimeout(function () {
+                message.classList.remove("show");
+            }, 2000);
         }
-
     </script>
 
 </body>
