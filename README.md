@@ -8,7 +8,7 @@ This repository demonstrates my learning and practical implementation of HTML, C
 
 A multi-page bookstore website designed to present engineering books and provide a simple browsing experience.
 
-🔗 **[Live Demo](https://web-development-workshop-mmckxrrpn-zero-bug2.vercel.app/)**
+🔗 **[Live Demo](https://web-development-workshop-chi.vercel.app/)**
 
 ### ✨ Features
 
